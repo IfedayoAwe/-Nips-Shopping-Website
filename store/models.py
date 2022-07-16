@@ -30,8 +30,8 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class User(AbstractBaseUser):
-    email = models.EmailField(verbose_name="email", max_length=60, unique=True)
+class Customer(AbstractBaseUser):
+    email = models.EmailField(verbose_name="email", max_length=60, unique=True, null=True)
     username = models.CharField(max_length=30, unique=True)
     date_joined = models.DateTimeField(verbose_name='date_joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last_login', auto_now=True)
@@ -53,17 +53,9 @@ class User(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
-class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    name = models.CharField(max_length=200, null=True)
-    email = models.CharField(max_length=200, null=True)
-
-    def __str__(self):
-        return self.name
-
 class Product(models.Model):
     name = models.CharField(max_length=200, null=True)
-    price = models.FloatField()
+    price = models.DecimalField(max_digits=7, decimal_places=2)
     digital = models.BooleanField(default=False, null=True, blank=False)
     image = models.ImageField(default='placeholder.png', null=True, blank=True)
 

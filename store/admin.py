@@ -11,8 +11,7 @@ class UsersAdmin(UserAdmin):
     list_filter = ()
     fieldsets = ()
 
-admin.site.register(User, UsersAdmin)
-admin.site.register(Customer)
+admin.site.register(Customer, UsersAdmin)
 admin.site.register(Product)
 admin.site.register(Order)
 admin.site.register(OrderItem)

@@ -119,4 +119,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'store.User'
+AUTH_USER_MODEL = 'store.Customer'
